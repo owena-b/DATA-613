@@ -26,6 +26,30 @@ date_info <- tibble(
 date_info
 ```
 
+### Question 2
+
+Import sample
+```{r}
+sample_dates <- c("2018-03-15", "2020-07-20", "2023-01-10", "2025-09-05")
+```
+
+Convert sample to `lubridate` format
+```{r}
+sample_dates <- ymd(sample_dates)
+```
+
+Put sample into `tibble` including the differentials. Print the `tibble`.
+```{r}
+date_diffs <- tibble(
+  DATE1 = head(sample_dates, -1),
+  DATE2 = tail(sample_dates, -1),
+  MONTH_DIFF = interval(DATE1, DATE2) %/% months(1),
+  WEEK_DIFF = interval(DATE1, DATE2) %/% weeks(1)
+)
+
+date_diffs
+```
+
 ```{r}
 
 ```
