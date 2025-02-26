@@ -5,6 +5,14 @@ date: "`r Sys.Date()`"
 output: html_document
 ---
 
+```{r, output=FALSE,include=FALSE}
+rm(list=ls())
+gc()
+library(tidyverse)
+library(lubridate)
+library(purrr)
+```
+
 ## Bradley's section
 
 ### Question 1
@@ -54,7 +62,7 @@ date_diffs
 
 ### Question 3
 
-Generate list of numeric vectors
+Generate list of numeric vectors.
 ```{r}
 num_lists <- list(c(4,16,25,36,49), c(2.3,5.7,8.1,11.4), c(10,20,30,40,50))
 ```
@@ -71,4 +79,29 @@ Extract mean, median and standard deviation using `map_dbl`.
 map_dbl(num_lists, mean)
 map_dbl(num_lists, median)
 map_dbl(num_lists, sd)
+```
+
+### Question 4
+
+Generate list of mixed date formats.
+```{r}
+date_strings <- list("2023-06-10", "2022/12/2", "15-Aug-2021", "InvalidDate")
+```
+
+Create a function that safely converts characters into `Date` format.
+```{r}
+safe_convert <- possibly(~ parse_date_time(.x, orders=c("ymd","d-b-Y")),
+           otherwise=NA_Date_, quiet=TRUE)
+```
+
+Apply the converter function to the character list.
+```{r, warning=FALSE}
+date_strings <- date_strings %>% 
+  map(safe_convert)
+```
+
+Extract the full month name for the non-`NA` dates.
+```{r}
+date_strings %>% 
+  map(month, label=TRUE, abbr=FALSE)
 ```
