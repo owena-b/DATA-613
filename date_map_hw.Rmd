@@ -5,26 +5,27 @@ date: "`r Sys.Date()`"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+## Bradley's section
+
+### Question 1
+
+Generate sequence of dates using `lubridate`
+```{r}
+dates <- ymd("2015-01-01") %m+% months(seq(0, (2025 - 2015) * 6, by = 2))
 ```
 
-## R Markdown
+Extract year, quarter, and ISO week number. Print the data.
+```{r}
+date_info <- tibble(
+  DATE = dates,
+  YEAR = year(dates),
+  QUARTER = quarter(dates),
+  ISO_WEEK = isoweek(dates)
+)
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+date_info
 ```
 
-## Including Plots
+```{r}
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
 ```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
