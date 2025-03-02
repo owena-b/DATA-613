@@ -34,6 +34,6 @@ flights14[carrier=="UA" & month==3 & air_time<330]
 4. Use and show `tidyverse` code to produce a table that shows a carrier of UA, a month of March, and an airtime that is below 330.
 
 ```{r}
-
+flights14 %>% filter(carrier=="UA" & month==3 & air_time<330)
 ```
 
