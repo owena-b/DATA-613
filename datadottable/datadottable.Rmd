@@ -1,0 +1,39 @@
+---
+title: 'Assignment: data.table'
+author: "Owen Auston-Babcock and Bradley Collins"
+date: "2025-03-02"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(dplyr)
+library(data.table)
+```
+
+1. Use and show data.table code to select the variables year, month, day, and hour from the imported flights data
+
+```{r}
+flights14 <- fread("flights14.csv")
+str(flights14)
+flights14[, .(year, month, day, hour)]
+```
+
+2. Use and show data. table code to produce a table that shows a carrier of DL, an origin of JFK and a destination of SEA
+
+```{r}
+
+```
+
+3. Use and show data.table code to produce a table that shows a carrier of UA, a month of March, and an airtime that is below 330.
+
+```{r}
+
+```
+
+4. Use and show tidyverse code to produce a table that shows a carrier of UA, a month of March, and an airtime that is below 330.
+
+```{r}
+
+```
+
