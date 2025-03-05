@@ -60,3 +60,19 @@ Calculates airspeed in miles per hour (tidyverse)
 nycdata <- nycdata %>% mutate(air_speed = distance/(air_time/60))
 ```
 
+### Question 7
+
+### 7a
+
+Changes the abbreviation to UnitedAir using data.table
+```{r}
+nycdata[carrier == 'UA', carrier := "UnitedAir"]
+```
+
+### 7b
+
+Changes the abbreviation to UnitedAir using tidyverse
+```{r}
+nycdata <- nycdata %>% mutate(carrier =ifelse(carrier =='UA','UnitedAir', carrier))
+```
+
