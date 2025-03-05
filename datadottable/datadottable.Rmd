@@ -6,34 +6,50 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(dplyr)
 library(data.table)
+
+nycdata <- fread("nycdata.csv")
 ```
 
-1. Use and show `data.table` code to select the variables `year`, `month`, `day`, and `hour` from the imported flights data
+# Owen's section
 
+## Question 1
+
+Shows a table of year, month, day and hour from imported data (data.table)
 ```{r}
-flights14 <- fread("flights14.csv")
-str(flights14)
-flights14[, .(year, month, day, hour)]
+nycdata[, .(year, month, day, hour)]
 ```
 
-2. Use and show `data.table` code to produce a table that shows a carrier of DL, an origin of JFK and a destination of SEA
+## Question 2
 
+Shows a table of DL flights from JFK to SEA (data.table)
 ```{r}
-flights14[carrier=="DL" & origin=="JFK" & dest=="SEA"]
+nycdata[carrier=="DL" & origin=="JFK" & dest=="SEA"]
 ```
 
-3. Use and show `data.table` code to produce a table that shows a carrier of UA, a month of March, and an airtime that is below 330.
+## Question 3
 
+Shows a table of DL flights in March that were under 330 minutes flight time (data.table)
 ```{r}
-flights14[carrier=="UA" & month==3 & air_time<330]
+nycdata[carrier=="UA" & month==3 & air_time<330]
 ```
 
-4. Use and show `tidyverse` code to produce a table that shows a carrier of UA, a month of March, and an airtime that is below 330.
+## Question 4
 
+Shows a table of DL flights in March that were under 330 minutes flight time (tidyverse)
 ```{r}
-flights14 %>% filter(carrier=="UA" & month==3 & air_time<330)
+nycdata %>% filter(carrier=="UA" & month==3 & air_time<330)
+```
+
+# Bradley's section
+
+## Question 5
+
+Calculates airspeed in miles per hour (data.table)
+```{r}
+nycdata[, speed := distance / (air_time/60)]
 ```
 
