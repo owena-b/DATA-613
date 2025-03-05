@@ -53,3 +53,10 @@ Calculates airspeed in miles per hour (data.table)
 nycdata[, speed := distance / (air_time/60)]
 ```
 
+## Question 6
+
+Calculates airspeed in miles per hour (tidyverse)
+```{r}
+nycdata <- nycdata %>% mutate(air_speed = distance/(air_time/60))
+```
+
